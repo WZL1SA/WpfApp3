@@ -4,9 +4,60 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp3"
+        xmlns:vm="clr-namespace:WpfApp3"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:CustomerViewModel />
+    </Window.DataContext>
     <Grid>
-        
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Top" Orientation="Vertical" VerticalAlignment="Top">
+                <Label Content="Name"></Label>
+                <TextBox x:Name="textFiled01" Text="{Binding TextValueName}" Width="250"  >
+                    <TextBox.BindingGroup>
+                        <BindingGroup/>
+                    </TextBox.BindingGroup>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding SelectCommand}"
+                                               />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TextBox>
+                <Label Content="Address"></Label>
+                <TextBox x:Name="textFiledAddress" Text="{Binding TextValueAddress}" Width="250"  ></TextBox>
+                <Label Content="Email"></Label>
+                <TextBox x:Name="textFiledEmail" Text="{Binding TextValueEmail}" Width="250"  ></TextBox>
+                <Label Content="Password"></Label>
+                <TextBox x:Name="textFiledEPassword" Text="{Binding TextValuePassword}" Width="250"  ></TextBox>
+                <Button Content="AddCustomer" Command="{Binding AddCustomerCommand}" IsEnabled="{Binding ButtonEnabled}"/>
+                <Button Content="UpdateCustomer" Command="{Binding UpdateCustomerCommand}" />
+                <Button Content="DeleteCustomer" Command="{Binding DeleteCustomerCommand}" />
+
+            </StackPanel>
+
+            <DataGrid 
+                ItemsSource="{Binding Customers}" 
+                  SelectedItem="{Binding SelectedCustomer}" 
+                      AutoGenerateColumns="False"                        
+                  >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectRowCommand}"
+                                               />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Name}"  />
+                    <DataGridTextColumn Binding="{Binding Address}"  />
+                    <DataGridTextColumn Binding="{Binding Email}"  />
+                    <DataGridTextColumn Binding="{Binding Password}"  />
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+
     </Grid>
 </Window>
