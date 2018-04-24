@@ -20,5 +20,6 @@ namespace WpfApp3
                 PropertyChanged(this, new PropertyChangedEventArgs(propName)); //informujemy metodę która nasłuchuje
             }
         }
+
     }
 }

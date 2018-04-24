@@ -51,7 +51,14 @@ namespace WpfApp3
 
         public void Update(Customer customer, string name, string address, string email, string password)
         {
-            throw new NotImplementedException();
+            var selectedcustomer = customer;
+
+            selectedcustomer.Name = name;
+            selectedcustomer.Address = address;
+            selectedcustomer.Email = email;
+            selectedcustomer.Password = password;
+
+            context.SaveChanges();
         }
     }
 }

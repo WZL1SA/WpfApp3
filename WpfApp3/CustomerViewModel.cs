@@ -18,7 +18,7 @@ namespace WpfApp3
         {
             this._CustomersService = _CustomersService;
 
-            //_Customer = new CustomerModel("Witek");                     
+            //_Customer = new Customer("Witek");                     
             Load();
 
         }
@@ -298,7 +298,7 @@ namespace WpfApp3
         }
 
 
-
+        
 
 
     }
