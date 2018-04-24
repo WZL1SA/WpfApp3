@@ -12,13 +12,39 @@ namespace WpfApp3
     using System;
     using System.Collections.Generic;
     
-    public partial class Task
+    public partial class Task : BaseModel
     {
         public int Id { get; set; }
-        public string TaskName { get; set; }
-        public string TaskContent { get; set; }
-        public Nullable<int> CustomerId { get; set; }
-    
+
+        private string _TaskName;        
+
+        public string TaskName
+        {
+            get { return _TaskName; }
+            set { _TaskName = value; OnPropertyChanged(); }
+        }
+
+        private string _TaskContent;
+
+        public string TaskContent
+        {
+            get { return _TaskContent; }
+            set { _TaskContent = value; OnPropertyChanged(); }
+        }
+
+        private Nullable<int> _CustomerId;
+
+        public Task()
+        {
+        }
+
+        public Nullable<int> CustomerId
+        {
+            get { return _CustomerId; }
+            set { _CustomerId = value; OnPropertyChanged(); }
+        }
+
+            
         public virtual Customer Customer { get; set; }
     }
 }
