@@ -26,5 +26,6 @@ namespace WpfApp3
         }
     
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Task> Tasks { get; set; }
     }
 }

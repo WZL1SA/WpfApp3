@@ -6,6 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="3c11956c575c4a878384c7446b0712cf" Name="Diagram1">
         <EntityTypeShape EntityType="ShopWitDbModel.Customer" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopWitDbModel.Task" Width="1.5" PointX="3" PointY="0.875" />
+        <AssociationConnector Association="ShopWitDbModel.FK__Tasks__CustomerI__398D8EEE" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

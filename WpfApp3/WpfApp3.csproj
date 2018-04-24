@@ -95,6 +95,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ShopWitModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Task.cs">
+      <DependentUpon>ShopWitModel.tt</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
