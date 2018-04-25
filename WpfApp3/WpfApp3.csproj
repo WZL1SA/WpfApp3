@@ -75,6 +75,7 @@
       <DependentUpon>ShopWitModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CustomerModel.cs" />
+    <Compile Include="DbTaskService.cs" />
     <Compile Include="TaskViewModel.cs" />
     <Compile Include="CustomerViewModel.cs" />
     <Compile Include="DbCustomerService.cs" />

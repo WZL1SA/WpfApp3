@@ -12,7 +12,7 @@ namespace WpfApp3
         
             void Add(Task customer);
 
-            void Update(Task task, string taskName, string taskContent, int customerId);
+            void Update(Task task, string taskName, string taskContent);
 
             void Remove(int id);
 

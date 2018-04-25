@@ -25,7 +25,7 @@ namespace WpfApp3
 
         public TaskViewModel()
            // : this(new MocCustomersServices()) // gdy kożystamy z Moc używamy metod Moc
-           : this(new DbCustomerService()) // gdy kożystamy z bazy danych kożystamy z metod klasy DbProductService
+           : this(new DbTaskService()) // gdy kożystamy z bazy danych kożystamy z metod klasy DbProductService
         {
            
         }
@@ -34,143 +34,106 @@ namespace WpfApp3
         private void Load()
         {
             Tasks = new ObservableCollection<Task>(_TasksService.Get());  //implementacja klasy informującej listę o konieczności zmiany
-           //sdffsdfsdfsd
-            this.TextValueName = "abc";
+          
+            this.TextValueTaskName = "abc";
             
         }
 
-        private string _TextValueName;
-
-        public string TextValueName
+        private string _TextValueTaskName;
+      
+        public string TextValueTaskName
         {
             get
             {                
-                return _TextValueName;
+                return _TextValueTaskName;
             }
             set
             {
-                _TextValueName = value;
+                _TextValueTaskName = value;
                 OnPropertyChanged();
             }
         }
 
-        private string _TextValueAddress;
+        private string _TextValueTaskContent;
 
-        public string TextValueAddress
+        public string TextValueTaskContent
         {
             get
             {
-                return _TextValueAddress;
+                return _TextValueTaskContent;
             }
             set
             {
-                _TextValueAddress = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _TextValueEmail;
-
-        public string TextValueEmail
-        {
-            get
-            {
-                return _TextValueEmail;
-            }
-            set
-            {
-                _TextValueEmail = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private string _TextValuePassword;
-
-        public string TextValuePassword
-        {
-            get
-            {
-                return _TextValuePassword;
-            }
-            set
-            {
-                _TextValuePassword = value;
+                _TextValueTaskContent = value;
                 OnPropertyChanged();
             }
         }
 
 
 
-
-        public ICommand AddCustomerCommand
+        public ICommand AddTaskCommand
         {
             get
             {
-                return new RelayCommand(c => AddCustomer(), c => CanAddCustomer());
+                return new RelayCommand(t => AddTask(), t => CanAddTask());
             }
         }
 
-        //public ICommand AddCustomerCommand => new RelayCommand(c => AddCustomer(), c => CanAddCustomer);
-
-        // public ICommand StartCommand => new RelayCommand(() => Start(), () => CanStart);
-
-
-
-        private bool CanAddCustomer()
+        
+        private bool CanAddTask()
         {
             return true;
         }
 
-        private void AddCustomer()
+        private void AddTask()
         {
-            //this.TextValueName = "zmiana";
-            //this.TextValueName = this.Selectedtask.Name;
+            
             var task = new Task();
             _TasksService.Add(task);
             this.Tasks.Add(task);           
         }
 
 
-        public ICommand UpdateCustomerCommand
+        public ICommand UpdateTaskCommand
         {
             get
             {
-                return new RelayCommand(u => UpdateCustomer());
+                return new RelayCommand(t => UpdateTask());
             }
         }
 
-        private void UpdateCustomer()
+        private void UpdateTask()
         {
             
-            _TasksService.Update(SelectedCustomer, TextValueName, TextValueAddress, TextValueEmail, TextValuePassword);
+            _TasksService.Update(SelectedTask, TextValueTaskName, TextValueTaskContent);
           
             
         }
 
-        public ICommand DeleteCustomerCommand
+        public ICommand DeleteTaskCommand
         {
             get
             {
-                return new RelayCommand(u => DeleteCustomer());
+                return new RelayCommand(t => DeleteTask());
             }
         }
 
-        private void DeleteCustomer()
+        private void DeleteTask()
         {
 
-            _TasksService.Remove(SelectedCustomer.Id);
-            this.Customers.Remove(SelectedCustomer);
+            _TasksService.Remove(SelectedTask.Id);
+            this.Tasks.Remove(SelectedTask);
 
         }
 
-        private ICollection<Customer> _Customers;
+        private ICollection<Task> _Tasks;
 
-        public ICollection<Customer> Customers
+        public ICollection<Task> Tasks
         {
-            get { return _Customers; }
+            get { return _Tasks; }
             set
             {
-                _Customers = value;
+                _Tasks = value;
                 OnPropertyChanged();
             }
         }
@@ -189,27 +152,27 @@ namespace WpfApp3
             }
         }
 
-        private Customer _SelectedCustomer;
+        private Task _SelectedTask;
 
-        public Customer SelectedCustomer
+        public Task SelectedTask
         {
-            get { return _SelectedCustomer; }
+            get { return _SelectedTask; }
             set
             {
-                _SelectedCustomer = value;                
+                _SelectedTask = value;                
                 OnPropertyChanged();
             }
         }
        
 
-        private bool _IsSelectedCustomer;
+        private bool _IsSelectedTask;
 
-        public bool IsSelectedCustomer
+        public bool IsSelectedTask
         {
-            get { return _IsSelectedCustomer; }
+            get { return _IsSelectedTask; }
             set
             {
-                _IsSelectedCustomer = value;                                
+                _IsSelectedTask = value;                                
                 OnPropertyChanged();                
             }
         }
@@ -278,16 +241,14 @@ namespace WpfApp3
 
         private void SelectRow()
         {
-            this.TextValueName = SelectedCustomer.Name;
-            this.TextValueAddress = SelectedCustomer.Address;
-            this.TextValueEmail = SelectedCustomer.Email;
-            this.TextValuePassword = SelectedCustomer.Password;
+            this.TextValueTaskName = SelectedTask.TaskName;
+            this.TextValueTaskContent = SelectedTask.TaskContent;            
         }
 
 
         private bool CanSelectRow()
         {
-            if (SelectedCustomer != null)
+            if (SelectedTask != null)
             {
                 return true;
             }

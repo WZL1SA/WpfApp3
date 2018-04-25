@@ -14,6 +14,15 @@ namespace WpfApp3
     
     public partial class Task : BaseModel
     {
+
+        public Task()
+        {
+           
+        }
+
+
+
+
         public int Id { get; set; }
 
         private string _TaskName;        
@@ -34,10 +43,7 @@ namespace WpfApp3
 
         private Nullable<int> _CustomerId;
 
-        public Task()
-        {
-        }
-
+        
         public Nullable<int> CustomerId
         {
             get { return _CustomerId; }
