@@ -88,7 +88,7 @@ namespace WpfApp3
         private void AddTask()
         {
             
-            var task = new Task();
+            var task = new Task(this.TextValueTaskName, this.TextValueTaskContent);
             _TasksService.Add(task);
             this.Tasks.Add(task);           
         }

@@ -8,12 +8,15 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <local:CustomerViewModel />
-    </Window.DataContext>
+    </Window.DataContext>-->
     <Grid>
         <TabControl>
             <TabItem Header="Customers">
+                <TabItem.DataContext>
+                    <local:CustomerViewModel />
+                </TabItem.DataContext>
                 <DockPanel>
                     <StackPanel DockPanel.Dock="Top" Orientation="Vertical" VerticalAlignment="Top">
                         <Label Content="Name"></Label>
@@ -53,16 +56,19 @@
                         </i:Interaction.Triggers>
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name"  />
-                            <DataGridTextColumn Header="Address"  />
-                            <DataGridTextColumn Header="Email"  />
-                            <DataGridTextColumn Header="Password"  />
+                            <DataGridTextColumn Header="Name"  Binding="{Binding Name}"  />
+                            <DataGridTextColumn Header="Address" Binding="{Binding Address}" />
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email}" />
+                            <DataGridTextColumn Header="Password"  Binding="{Binding Password}"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </DockPanel>
             </TabItem>
 
             <TabItem Header="Tasks">
+                <TabItem.DataContext>
+                    <local:TaskViewModel />
+                </TabItem.DataContext>
                 <DockPanel>
                     <StackPanel DockPanel.Dock="Top" Orientation="Vertical" VerticalAlignment="Top">
                         <Label Content="TaksName"></Label>
@@ -99,8 +105,8 @@
                         </i:Interaction.Triggers>
 
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding TaskName}"  />
-                            <DataGridTextColumn Binding="{Binding TaskContent}"  />
+                            <DataGridTextColumn Header="Name" Binding="{Binding TaskName}"  />
+                            <DataGridTextColumn Header="Content" Binding="{Binding TaskContent}"  />
                         </DataGrid.Columns>
                     </DataGrid>
                 </DockPanel>

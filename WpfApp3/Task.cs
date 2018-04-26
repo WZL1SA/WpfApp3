@@ -20,6 +20,12 @@ namespace WpfApp3
            
         }
 
+        public Task(string taskName, string taskContent)
+        {
+            this.TaskName = taskName;
+            this.TaskContent = taskContent;
+        }
+
 
 
 
