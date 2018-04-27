@@ -14,6 +14,8 @@ namespace WpfApp3
     {
         private readonly ITasksService _TasksService;
 
+        private readonly ICustomersService _CustomersService;
+
         public TaskViewModel(ITasksService _TasksService)
         {
             this._TasksService = _TasksService;
@@ -25,7 +27,7 @@ namespace WpfApp3
 
         public TaskViewModel()
            // : this(new MocCustomersServices()) // gdy kożystamy z Moc używamy metod Moc
-           : this(new DbTaskService()) // gdy kożystamy z bazy danych kożystamy z metod klasy DbProductService
+           : this(new DbTaskService()) // gdy kożystamy z bazy danych kożystamy z metod klasy DbProductService          
         {
            
         }
@@ -34,7 +36,7 @@ namespace WpfApp3
         private void Load()
         {
             Tasks = new ObservableCollection<Task>(_TasksService.Get());  //implementacja klasy informującej listę o konieczności zmiany
-          
+           
             this.TextValueTaskName = "abc";
             
         }
@@ -140,9 +142,11 @@ namespace WpfApp3
 
 
 
-        private Customer _Customer;
 
-        public Customer Customer
+
+        private ICollection<Customer> _Customer;
+
+        public ICollection<Customer> Customer
         {
             get { return _Customer; }
             set

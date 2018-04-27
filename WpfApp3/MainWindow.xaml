@@ -85,6 +85,10 @@
                         </TextBox>
                         <Label Content="Content"></Label>
                         <TextBox x:Name="textFiledContent" Text="{Binding TextValueTaskContent}" Width="250"  ></TextBox>
+                        <Label Content="Selected User"></Label>
+                        <ComboBox x:Name="cbSeletedUser" ItemsSource="{Binding Customer}" >
+                            <ComboBoxItem  />
+                        </ComboBox>
 
                         <Button Content="AddTask" Command="{Binding AddTaskCommand}" IsEnabled="{Binding ButtonEnabled}"/>
                         <Button Content="UpdateTask" Command="{Binding UpdateTaskCommand}" />
