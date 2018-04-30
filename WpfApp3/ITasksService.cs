@@ -21,6 +21,9 @@ namespace WpfApp3
             Task Get(int id);
 
             Task Get(string taskName);
-        
+
+            ICollection<Customer> GetCustomers();
+
+
     }
 }

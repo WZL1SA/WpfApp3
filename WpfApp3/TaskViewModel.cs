@@ -14,7 +14,7 @@ namespace WpfApp3
     {
         private readonly ITasksService _TasksService;
 
-        private readonly ICustomersService _CustomersService;
+        //private readonly ICustomersService _CustomersService;
 
         public TaskViewModel(ITasksService _TasksService)
         {
@@ -27,7 +27,7 @@ namespace WpfApp3
 
         public TaskViewModel()
            // : this(new MocCustomersServices()) // gdy kożystamy z Moc używamy metod Moc
-           : this(new DbTaskService()) // gdy kożystamy z bazy danych kożystamy z metod klasy DbProductService          
+           : this(new DbTaskService()) // gdy kożystamy z bazy danych kożystamy z metod klasy DbTaskService          
         {
            
         }
@@ -36,7 +36,9 @@ namespace WpfApp3
         private void Load()
         {
             Tasks = new ObservableCollection<Task>(_TasksService.Get());  //implementacja klasy informującej listę o konieczności zmiany
-           
+
+            Customers = new ObservableCollection<Customer>(_TasksService.GetCustomers());  //implementacja klasy informującej listę o konieczności zmiany      
+
             this.TextValueTaskName = "abc";
             
         }
@@ -144,14 +146,14 @@ namespace WpfApp3
 
 
 
-        private ICollection<Customer> _Customer;
+        private ICollection<Customer> _Customers;
 
-        public ICollection<Customer> Customer
+        public ICollection<Customer> Customers
         {
-            get { return _Customer; }
+            get { return _Customers; }
             set
             {
-                _Customer = value;
+                _Customers = value;
                 OnPropertyChanged();
             }
         }
@@ -167,7 +169,20 @@ namespace WpfApp3
                 OnPropertyChanged();
             }
         }
-       
+
+        private Customer _SelectedCustomer;
+
+        public Customer SelectedCustomer
+        {
+            get { return _SelectedCustomer; }
+            set
+            {
+                _SelectedCustomer = value;
+                OnPropertyChanged();
+            }
+        }
+
+
 
         private bool _IsSelectedTask;
 
@@ -226,6 +241,7 @@ namespace WpfApp3
         private void Select()
         {
             this.ButtonEnabled = true;
+          
         }
 
         private ICommand _SelectRowCommand;

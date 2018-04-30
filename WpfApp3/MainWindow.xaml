@@ -86,8 +86,11 @@
                         <Label Content="Content"></Label>
                         <TextBox x:Name="textFiledContent" Text="{Binding TextValueTaskContent}" Width="250"  ></TextBox>
                         <Label Content="Selected User"></Label>
-                        <ComboBox x:Name="cbSeletedUser" ItemsSource="{Binding Customer}" >
-                            <ComboBoxItem  />
+                        <ComboBox x:Name="cbSeletedUser" ItemsSource="{Binding Path=Customers}"
+                                  SelectedItem="{Binding Path=SelectedCustomer}"
+                                  DisplayMemberPath="Name"
+                                  >
+                           
                         </ComboBox>
 
                         <Button Content="AddTask" Command="{Binding AddTaskCommand}" IsEnabled="{Binding ButtonEnabled}"/>
@@ -96,7 +99,7 @@
 
                     </StackPanel>
 
-                    <DataGrid 
+                    <!--<DataGrid 
                 ItemsSource="{Binding Tasks}" 
                   SelectedItem="{Binding SelectedTask}" 
                       AutoGenerateColumns="False"                        
@@ -112,7 +115,7 @@
                             <DataGridTextColumn Header="Name" Binding="{Binding TaskName}"  />
                             <DataGridTextColumn Header="Content" Binding="{Binding TaskContent}"  />
                         </DataGrid.Columns>
-                    </DataGrid>
+                    </DataGrid>-->
                 </DockPanel>
             </TabItem>
         </TabControl>

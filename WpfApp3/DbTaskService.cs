@@ -58,5 +58,11 @@ namespace WpfApp3
 
             context.SaveChanges();
         }
+
+        public ICollection<Customer> GetCustomers()
+        {
+            return context.Customers.ToList();
+
+        }
     }
 }
