@@ -20,7 +20,13 @@ namespace WpfApp3
         {
             this._TasksService = _TasksService;
 
-            //_Customer = new Customer("Witek");                     
+            //_Customer = new Customer("Witek");  
+
+            Tasks = new ObservableCollection<Task>(_TasksService.Get());  //implementacja klasy informującej listę o konieczności zmiany
+
+            Customers = new ObservableCollection<Customer>(_TasksService.GetCustomers());  //implementacja klasy informującej listę o konieczności zmiany      
+
+
             Load();
 
         }
@@ -35,9 +41,21 @@ namespace WpfApp3
 
         private void Load()
         {
-            Tasks = new ObservableCollection<Task>(_TasksService.Get());  //implementacja klasy informującej listę o konieczności zmiany
 
-            Customers = new ObservableCollection<Customer>(_TasksService.GetCustomers());  //implementacja klasy informującej listę o konieczności zmiany      
+            _TasksService.Get().Where(t => !Tasks.Contains(t)).ToList().ForEach(t => Tasks.Add(t));
+
+
+
+            foreach (var customer in _TasksService.GetCustomers())
+
+            {
+
+                if (!Customers.Contains(customer))
+
+                    Customers.Add(customer);
+
+            }
+
 
             this.TextValueTaskName = "abc";
             
@@ -150,7 +168,11 @@ namespace WpfApp3
 
         public ICollection<Customer> Customers
         {
-            get { return _Customers; }
+            get
+            {
+              
+                return _Customers;
+            }
             set
             {
                 _Customers = value;
@@ -279,7 +301,45 @@ namespace WpfApp3
         }
 
 
-        
+        public ICommand RefreshCommand
+
+        {
+
+            get
+
+            {
+
+                if (refreshCommand == null)
+
+                {
+
+                    refreshCommand = new RelayCommand(t => Load());
+
+                }
+
+                return refreshCommand;
+
+            }
+
+
+
+            set
+
+            {
+
+                refreshCommand = value;
+
+                OnPropertyChanged(nameof(RelayCommand));
+
+            }
+
+        }
+
+
+
+        private ICommand refreshCommand;
+
+
 
 
     }

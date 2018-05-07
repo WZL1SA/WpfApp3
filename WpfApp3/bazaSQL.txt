@@ -1,0 +1,22 @@
+
+baza ShopWitDb
+
+
+CREATE TABLE [dbo].[Customers] (
+    [Id]       INT            IDENTITY (1, 1) NOT NULL,
+    [Name]     NVARCHAR (MAX) NULL,
+    [Address]  NVARCHAR (MAX) NULL,
+    [Email]    NVARCHAR (MAX) NULL,
+    [Password] NVARCHAR (MAX) NULL,
+    CONSTRAINT [PK_dbo.CustomerModels] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+CREATE TABLE [dbo].[Tasks] (
+    [Id]          INT        IDENTITY (1, 1) NOT NULL,
+    [TaskName]    NCHAR (50) NULL,
+    [TaskContent] NCHAR (50) NULL,
+    [CustomerId]  INT        NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customers] ([Id])
+);
+

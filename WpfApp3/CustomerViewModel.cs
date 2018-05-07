@@ -127,7 +127,8 @@ namespace WpfApp3
             //this.TextValueName = this.SelectedCustomer.Name;
             var customer = new Customer(this.TextValueName, this.TextValueAddress, this.TextValueEmail, this.TextValuePassword);
             _CustomersService.Add(customer);
-            this.Customers.Add(customer);           
+            this.Customers.Add(customer);
+
         }
 
 

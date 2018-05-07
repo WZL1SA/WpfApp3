@@ -37,6 +37,15 @@
                         <TextBox x:Name="textFiledEmail" Text="{Binding TextValueEmail}" Width="250"  ></TextBox>
                         <Label Content="Password"></Label>
                         <TextBox x:Name="textFiledEPassword" Text="{Binding TextValuePassword}" Width="250"  ></TextBox>
+
+                        <Label Content="Selected User"></Label>
+                        <ComboBox  ItemsSource="{Binding Path=Customers}"
+                                  SelectedItem="{Binding Path=SelectedCustomer}"
+                                  DisplayMemberPath="Name"
+                                  >
+
+                        </ComboBox>
+
                         <Button Content="AddCustomer" Command="{Binding AddCustomerCommand}" IsEnabled="{Binding ButtonEnabled}"/>
                         <Button Content="UpdateCustomer" Command="{Binding UpdateCustomerCommand}" />
                         <Button Content="DeleteCustomer" Command="{Binding DeleteCustomerCommand}" />
@@ -66,6 +75,16 @@
             </TabItem>
 
             <TabItem Header="Tasks">
+                <i:Interaction.Triggers>
+
+                    <i:EventTrigger EventName="GotFocus">
+
+                        <i:InvokeCommandAction Command="{Binding RefreshCommand}" />
+
+                    </i:EventTrigger>
+
+                </i:Interaction.Triggers>
+                
                 <TabItem.DataContext>
                     <local:TaskViewModel />
                 </TabItem.DataContext>
